@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="min-w-screen min-h-screen flex items-center justify-center px-5 py-5"
-  >
+  <div>
     <div
       class="w-full mx-auto rounded-xl bg-gray-100 shadow-lg p-10 text-gray-800 relative overflow-hidden min-w-80 max-w-3xl"
     >
@@ -41,14 +39,15 @@ import { mdiMagnify } from '@mdi/js'
 
 export default defineComponent({
   name: 'AppSearchBox',
-  setup () {
+  emits: ['search'],
+  setup (_props, { emit }) {
     const magnify = mdiMagnify
     const state = reactive({
       searchModel: ''
     })
 
     function searchBooks (): void {
-      console.log(state.searchModel)
+      emit('search', state.searchModel)
       state.searchModel = ''
     }
 
