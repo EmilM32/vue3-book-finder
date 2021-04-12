@@ -12,7 +12,9 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import AppSearchBox from '@/components/AppSearchBox.vue'
+import { ActionTypes } from '@/enums/action-types'
 
 export default defineComponent({
   name: 'App',
@@ -21,6 +23,7 @@ export default defineComponent({
   },
   setup () {
     const router = useRouter()
+    const store = useStore()
 
     const state = reactive({
       showResult: false
@@ -30,11 +33,9 @@ export default defineComponent({
       if (text.length) {
         state.showResult = true
         router.push({
-          name: 'Results',
-          query: {
-            searchFor: text
-          }
+          name: 'Results'
         })
+        store.dispatch(ActionTypes.ADD_SEARCH_DATA, text)
       } else {
         state.showResult = false
         router.push({ name: 'Home' })

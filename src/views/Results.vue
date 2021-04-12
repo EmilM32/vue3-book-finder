@@ -1,17 +1,17 @@
 <template>{{ searchFor }}</template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
-import { useRoute } from 'vue-router'
+import { defineComponent, reactive, toRefs, computed } from 'vue'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'Results',
 
   setup () {
-    const route = useRoute()
+    const store = useStore()
 
     const state = reactive({
-      searchFor: route.query.searchFor
+      searchFor: computed(() => store.state.searchData)
     })
 
     return { ...toRefs(state) }

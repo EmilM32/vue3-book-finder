@@ -11,7 +11,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/result',
     name: 'Results',
     component: () => import('../views/Results.vue'),
-    props: true
   }
 ]
 
