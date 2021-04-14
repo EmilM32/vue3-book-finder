@@ -1,26 +1,44 @@
 import { ActionTypes } from '@/enums/action-types'
 import { MutationTypes } from '@/enums/mutation-types'
-import { createStore } from 'vuex'
+import { IBooksResult, IState } from '@/interfaces'
+import { createStore, useStore as baseUseStore, Store } from 'vuex'
+import axios from 'axios'
+import { getApi } from '@/api'
+import { InjectionKey } from 'vue'
 
-interface IState {
-  searchData: string
-}
+// define injection key
+export const key: InjectionKey<Store<IState>> = Symbol('InjectionKey')
 
-export default createStore<IState>({
+export const store = createStore<IState>({
   state: {
-    searchData: ''
+    booksResult: {
+      items: [],
+      kind: '',
+      totalItems: 0,
+    },
+    pagination: {
+      maxResults: 20,
+      startIndex: 0,
+    },
   },
   mutations: {
-    [MutationTypes.SET_SEARCH_DATA] (state: IState, data: string): void {
-      state.searchData = data
+    [MutationTypes.ADD_BOOKS_RESULT] (state: IState, payload: IBooksResult): void {
+      state.booksResult = payload
     }
   },
   actions: {
-    [ActionTypes.ADD_SEARCH_DATA] ({ commit }, data: string): void {
-      commit(MutationTypes.SET_SEARCH_DATA, data)
+    async [ActionTypes.SEARCH_BOOKS] ({ commit }, query: string): Promise<void> {
+      const response = await axios.get(getApi(this.state.pagination.maxResults, this.state.pagination.startIndex, query))
+      if (response) {
+        commit(MutationTypes.ADD_BOOKS_RESULT, response.data)
+      }
     }
   },
   getters: {
-    searchData: (state) => state.searchData
+    booksResult: (state) => state.booksResult.items
   }
 })
+
+export function useStore (): Store<IState> {
+  return baseUseStore(key)
+}

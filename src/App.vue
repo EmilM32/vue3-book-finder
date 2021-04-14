@@ -35,7 +35,7 @@ export default defineComponent({
         router.push({
           name: 'Results'
         })
-        store.dispatch(ActionTypes.ADD_SEARCH_DATA, text)
+        store.dispatch(ActionTypes.SEARCH_BOOKS, text)
       } else {
         state.showResult = false
         router.push({ name: 'Home' })

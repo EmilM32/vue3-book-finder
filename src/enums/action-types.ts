@@ -1,3 +1,3 @@
 export enum ActionTypes {
-  ADD_SEARCH_DATA = 'ADD_SEARCH_DATA'
+  SEARCH_BOOKS = 'SEARCH_BOOKS'
 }

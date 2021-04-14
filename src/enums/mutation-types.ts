@@ -1,3 +1,3 @@
 export enum MutationTypes {
-  SET_SEARCH_DATA = 'SET_SEARCH_DATA'
+  ADD_BOOKS_RESULT = 'ADD_BOOKS_RESULT'
 }
