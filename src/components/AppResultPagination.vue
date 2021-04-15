@@ -3,10 +3,9 @@
     <div class="flex justify-center justify-self-center bg-gray-300 w-32 rounded-t-xl">
       <div v-for="(action, i) in actions" :key="i">
         <button
-          v-show="!action.disabled"
+          v-show="!action.hide"
           class="flex-shrink focus:outline-none"
           @click="action.click"
-          :disabled="action.disabled"
         >
           <svg viewBox="0 0 20 20" height="40px" width="40px">
             <path :d="action.icon" />
@@ -23,7 +22,7 @@ import { mdiChevronRight, mdiChevronLeft } from '@mdi/js'
 
 interface IAction {
   icon: string
-  disabled: boolean
+  hide: boolean
   click: () => void
 }
 
@@ -51,12 +50,12 @@ export default defineComponent({
       actions: [
         {
           icon: mdiChevronLeft,
-          disabled: computed(() => currentStartIndex.value <= 0),
+          hide: computed(() => currentStartIndex.value <= 0),
           click: clickedPrevios,
         },
         {
           icon: mdiChevronRight,
-          disabled: false,
+          hide: false,
           click: clickedNext,
         },
       ]
