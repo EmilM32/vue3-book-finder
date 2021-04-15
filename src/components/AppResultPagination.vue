@@ -38,25 +38,17 @@ export default defineComponent({
   setup (props, { emit }) {
     const { currentStartIndex } = toRefs(props)
 
-    function clickedPrevios (): void {
-      emit('previous')
-    }
-
-    function clickedNext (): void {
-      emit('next')
-    }
-
     const state: { actions: IAction[] } = reactive({
       actions: [
         {
           icon: mdiChevronLeft,
           hide: computed(() => currentStartIndex.value <= 0),
-          click: clickedPrevios,
+          click: () => emit('previous'),
         },
         {
           icon: mdiChevronRight,
           hide: false,
-          click: clickedNext,
+          click: () => emit('next'),
         },
       ]
     })
