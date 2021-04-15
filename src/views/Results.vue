@@ -8,17 +8,25 @@
       >{{ book.volumeInfo.title }}</div>
     </div>
   </div>
-  <app-result-pagination @previous="goToPreviousPage" @next="goToNextPage" />
+  <app-result-pagination
+    :current-start-index="currentStartIndex"
+    @previous="goToPreviousPage"
+    @next="goToNextPage"
+  />
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs, computed } from 'vue'
 import AppResultPagination from '@/components/AppResultPagination.vue'
 import { IBook } from '@/interfaces'
-import { useStore } from '@/store'
+import { useStore } from 'vuex'
+import { EChangePage } from '@/enums'
+import { ActionTypes } from '@/enums/action-types'
+import { MutationTypes } from '@/enums/mutation-types'
 
 interface IResultsState {
   booksResult: IBook[]
+  currentStartIndex: number
 }
 
 export default defineComponent({
@@ -31,15 +39,18 @@ export default defineComponent({
     const store = useStore()
 
     const state: IResultsState = reactive({
-      booksResult: computed(() => store.getters.booksResult)
+      booksResult: computed(() => store.getters.booksResult),
+      currentStartIndex: computed(() => store.getters.currentStartIndex)
     })
 
     function goToPreviousPage (): void {
-      console.log('goToPreviousPage')
+      store.commit(MutationTypes.CHANGE_PAGE, EChangePage.PREVIOUS)
+      store.dispatch(ActionTypes.SEARCH_BOOKS)
     }
 
     function goToNextPage (): void {
-      console.log('goToNextPage')
+      store.commit(MutationTypes.CHANGE_PAGE, EChangePage.NEXT)
+      store.dispatch(ActionTypes.SEARCH_BOOKS)
     }
 
     return { ...toRefs(state), goToPreviousPage, goToNextPage }

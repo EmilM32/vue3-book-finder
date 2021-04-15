@@ -29,9 +29,17 @@ interface IAction {
 export default defineComponent({
   name: 'AppResultPagination',
   emits: ['previous', 'next'],
-  setup (_props, { emit }) {
+  props: {
+    currentStartIndex: {
+      type: Number,
+      required: true,
+    },
+  },
+  setup (props, { emit }) {
     function clickedPrevios (): void {
-      emit('previous')
+      if (props.currentStartIndex > 0) {
+        emit('previous')
+      }
     }
 
     function clickedNext (): void {

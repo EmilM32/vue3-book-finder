@@ -97,13 +97,13 @@ export interface IBooksResult {
   totalItems: number
   items: IBook[]
 }
-
-export interface IPagination {
+export interface ISearchData {
+  query: string
   maxResults: number
   startIndex: number
 }
 
 export interface IState {
   booksResult: IBooksResult
-  pagination: IPagination
+  searchData: ISearchData
 }
