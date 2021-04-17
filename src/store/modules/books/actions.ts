@@ -7,8 +7,6 @@ import { ActionContext } from 'vuex'
 
 export default {
   async [ActionTypes.SEARCH_BOOKS] ({ state, commit }: ActionContext<IBooksState, IRootState>): Promise<void> {
-    console.log('ActionTypes.SEARCH_BOOKS')
-
     const response = await axios.get(
       getApi(
         state.searchData.maxResults,
