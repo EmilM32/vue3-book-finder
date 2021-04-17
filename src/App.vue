@@ -36,8 +36,8 @@ export default defineComponent({
         router.push({
           name: 'Results'
         })
-        store.commit(MutationTypes.SET_QUERY, query)
-        store.dispatch(ActionTypes.SEARCH_BOOKS)
+        store.commit('books/' + MutationTypes.SET_QUERY, query)
+        store.dispatch('books/' + ActionTypes.SEARCH_BOOKS)
       } else {
         state.showResult = false
         router.push({ name: 'Home' })

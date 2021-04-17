@@ -39,18 +39,18 @@ export default defineComponent({
     const store = useStore()
 
     const state: IResultsState = reactive({
-      booksResult: computed(() => store.getters.booksResult),
-      currentStartIndex: computed(() => store.getters.currentStartIndex)
+      booksResult: computed(() => store.getters['books/booksResult']),
+      currentStartIndex: computed(() => store.getters['books/currentStartIndex'])
     })
 
     function goToPreviousPage (): void {
-      store.commit(MutationTypes.CHANGE_PAGE, EChangePage.PREVIOUS)
-      store.dispatch(ActionTypes.SEARCH_BOOKS)
+      store.commit('books/' + MutationTypes.CHANGE_PAGE, EChangePage.PREVIOUS)
+      store.dispatch('books/' + ActionTypes.SEARCH_BOOKS)
     }
 
     function goToNextPage (): void {
-      store.commit(MutationTypes.CHANGE_PAGE, EChangePage.NEXT)
-      store.dispatch(ActionTypes.SEARCH_BOOKS)
+      store.commit('books/' + MutationTypes.CHANGE_PAGE, EChangePage.NEXT)
+      store.dispatch('books/' + ActionTypes.SEARCH_BOOKS)
     }
 
     return { ...toRefs(state), goToPreviousPage, goToNextPage }
