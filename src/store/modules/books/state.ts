@@ -1,6 +1,6 @@
 import { IBooksState } from '@/interfaces'
 
-export default {
+const state: IBooksState = {
   booksResult: {
     items: [],
     kind: '',
@@ -11,4 +11,6 @@ export default {
     maxResults: 10,
     startIndex: 0,
   }
-} as IBooksState
+}
+
+export default state
