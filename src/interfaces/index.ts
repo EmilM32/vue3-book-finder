@@ -103,7 +103,11 @@ export interface ISearchData {
   startIndex: number
 }
 
-export interface IState {
+export interface IBooksState {
   booksResult: IBooksResult
   searchData: ISearchData
+}
+
+export interface IRootState {
+  books: IBooksState
 }

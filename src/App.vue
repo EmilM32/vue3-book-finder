@@ -15,7 +15,7 @@ import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import AppSearchBox from '@/components/AppSearchBox.vue'
 import { ActionTypes } from '@/enums/action-types'
-import { MutationTypes } from './enums/mutation-types'
+import { MutationTypes } from '@/enums/mutation-types'
 
 export default defineComponent({
   name: 'App',
