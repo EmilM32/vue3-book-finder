@@ -5,9 +5,9 @@ export interface IIndustryIdentifiers {
 
 export interface IVolumeInfo {
   title: string
-  authors: string[]
-  publisher: string
-  publishedDate: string
+  authors?: string[]
+  publisher?: string
+  publishedDate?: string
   description: string
   industryIdentifiers: IIndustryIdentifiers[]
   readingModes: {
@@ -23,7 +23,7 @@ export interface IVolumeInfo {
     containsEpubBubbles: boolean
     containsImageBubbles: boolean
   },
-  imageLinks: {
+  imageLinks?: {
     smallThumbnail: string
     thumbnail: string
   },

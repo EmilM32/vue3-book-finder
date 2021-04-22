@@ -1,5 +1,10 @@
 {
   "common": {
     "search": "Search"
+  },
+  "info": {
+    "authors": "Author | Authors",
+    "publishedDate": "Published date",
+    "publisher": "Publisher"
   }
 }
