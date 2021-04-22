@@ -16,8 +16,20 @@
           class="block w-7 h-7 text-center text-xl leading-0 absolute top-2 right-2 focus:outline-none transition-colors"
           @click="searchBooks"
         >
-          <svg height="20" width="20">
-            <path :d="magnify" />
+          <svg
+            class="h-5 w-5 text-black"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <circle cx="10" cy="10" r="7" />
+            <line x1="21" y1="21" x2="15" y2="15" />
           </svg>
         </button>
       </div>
@@ -35,23 +47,21 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
-import { mdiMagnify } from '@mdi/js'
 
 export default defineComponent({
   name: 'AppSearchBox',
   emits: ['search'],
-  setup (_props, { emit }) {
-    const magnify = mdiMagnify
+  setup(_props, { emit }) {
     const state = reactive({
-      searchModel: ''
+      searchModel: '',
     })
 
-    function searchBooks (): void {
+    function searchBooks(): void {
       emit('search', state.searchModel)
       state.searchModel = ''
     }
 
-    return { ...toRefs(state), searchBooks, magnify }
+    return { ...toRefs(state), searchBooks }
   },
 })
 </script>
