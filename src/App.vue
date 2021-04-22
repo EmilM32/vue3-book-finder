@@ -16,6 +16,8 @@ import { useStore } from 'vuex'
 import AppSearchBox from '@/components/AppSearchBox.vue'
 import { ActionTypes } from '@/enums/action-types'
 import { MutationTypes } from '@/enums/mutation-types'
+import { EModules } from '@/enums'
+import { getModule } from '@/utils'
 
 export default defineComponent({
   name: 'App',
@@ -36,8 +38,8 @@ export default defineComponent({
         router.push({
           name: 'Results'
         })
-        store.commit('books/' + MutationTypes.SET_QUERY, query)
-        store.dispatch('books/' + ActionTypes.SEARCH_BOOKS)
+        store.commit(getModule(EModules.BOOKS, MutationTypes.SET_QUERY), query)
+        store.dispatch(getModule(EModules.BOOKS, ActionTypes.SEARCH_BOOKS))
       } else {
         state.showResult = false
         router.push({ name: 'Home' })

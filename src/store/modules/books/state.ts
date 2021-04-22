@@ -1,15 +1,30 @@
 import { IBooksState } from '@/interfaces'
 
-const state: IBooksState = {
-  booksResult: {
-    items: [],
-    kind: '',
-    totalItems: 0,
-  },
-  searchData: {
-    query: '',
-    maxResults: 10,
-    startIndex: 0,
+// const state: IBooksState = {
+//   booksResult: {
+//     items: [],
+//     kind: '',
+//     totalItems: 0,
+//   },
+//   searchData: {
+//     query: '',
+//     maxResults: 10,
+//     startIndex: 0,
+//   }
+// }
+
+const state = (): IBooksState => {
+  return {
+    booksResult: {
+      items: [],
+      kind: '',
+      totalItems: 0,
+    },
+    searchData: {
+      query: '',
+      maxResults: 10,
+      startIndex: 0,
+    }
   }
 }
 

@@ -20,9 +20,11 @@ import { defineComponent, reactive, toRefs, computed } from 'vue'
 import AppResultPagination from '@/components/AppResultPagination.vue'
 import { IBook } from '@/interfaces'
 import { useStore } from 'vuex'
-import { EChangePage } from '@/enums'
+import { EChangePage, EModules } from '@/enums'
 import { ActionTypes } from '@/enums/action-types'
 import { MutationTypes } from '@/enums/mutation-types'
+import { getModule } from '@/utils'
+import { GettersTypes } from '@/enums/getter-types'
 
 interface IResultsState {
   booksResult: IBook[]
@@ -39,18 +41,18 @@ export default defineComponent({
     const store = useStore()
 
     const state: IResultsState = reactive({
-      booksResult: computed(() => store.getters['books/booksResult']),
-      currentStartIndex: computed(() => store.getters['books/currentStartIndex'])
+      booksResult: computed(() => store.getters[getModule(EModules.BOOKS, GettersTypes.BOOK_RESULTS)]),
+      currentStartIndex: computed(() => store.getters[getModule(EModules.BOOKS, GettersTypes.CURRENT_START_INDEX)])
     })
 
     function goToPreviousPage (): void {
-      store.commit('books/' + MutationTypes.CHANGE_PAGE, EChangePage.PREVIOUS)
-      store.dispatch('books/' + ActionTypes.SEARCH_BOOKS)
+      store.commit(getModule(EModules.BOOKS, MutationTypes.CHANGE_PAGE), EChangePage.PREVIOUS)
+      store.dispatch(getModule(EModules.BOOKS, ActionTypes.SEARCH_BOOKS))
     }
 
     function goToNextPage (): void {
-      store.commit('books/' + MutationTypes.CHANGE_PAGE, EChangePage.NEXT)
-      store.dispatch('books/' + ActionTypes.SEARCH_BOOKS)
+      store.commit(getModule(EModules.BOOKS, MutationTypes.CHANGE_PAGE), EChangePage.NEXT)
+      store.dispatch(getModule(EModules.BOOKS, ActionTypes.SEARCH_BOOKS))
     }
 
     return { ...toRefs(state), goToPreviousPage, goToNextPage }

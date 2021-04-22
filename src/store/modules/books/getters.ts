@@ -1,11 +1,12 @@
+import { GettersTypes } from '@/enums/getter-types'
 import { IBook, IBooksState } from '@/interfaces'
 
 export default {
-  booksResult (state: IBooksState): IBook[] {
+  [GettersTypes.BOOK_RESULTS] (state: IBooksState): IBook[] {
     return state.booksResult.items
   },
 
-  currentStartIndex (state: IBooksState): number {
+  [GettersTypes.CURRENT_START_INDEX] (state: IBooksState): number {
     return state.searchData.startIndex
   }
 }
