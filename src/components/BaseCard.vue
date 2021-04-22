@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border-gray-300 border-1 bg-gray-500 hover:bg-gray-600 rounded-lg"
+    class="relative border-gray-300 border-1 bg-gray-500 hover:bg-gray-600 rounded-lg"
   >
     <span class="m-4 font-semibold justify-center flex" :title="title">{{
       cutTitle(title)
@@ -11,7 +11,19 @@
       </div>
       <div v-else class="relative m-3 flex-initial w-24 h-52 px-5 bg-gray-800">
         <span class="absolute inset-0 flex items-center justify-center">
-          no poster
+          <svg
+            class="h-10 w-10 text-white"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
         </span>
       </div>
       <div class="flex flex-col">
@@ -31,6 +43,12 @@
         </div>
       </div>
     </div>
+    <button
+      class="absolute bottom-2 right-2 bg-transparent hover:bg-blue-400 font-semibold py-2 px-4 border hover:border-transparent rounded"
+      @click="goToBooksDetails"
+    >
+      Button
+    </button>
   </div>
 </template>
 
@@ -59,6 +77,10 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    id: {
+      type: String,
+      required: true,
+    },
   },
   setup(props) {
     function cutTitle(title: string): string {
@@ -68,7 +90,12 @@ export default defineComponent({
         return title
       }
     }
-    return { ...toRefs(props), cutTitle }
+
+    function goToBooksDetails(): void {
+      console.log('goToBooksDetails', props.id)
+    }
+
+    return { ...toRefs(props), cutTitle, goToBooksDetails }
   },
 })
 </script>

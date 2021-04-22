@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-20 mt-6">
+  <div class="mx-20 my-6">
     <div
       v-if="!loadingData"
       class="grid justify-items-stretch grid-cols-1 gap-4 lg:grid-cols-3 sm:grid-cols-2"
@@ -7,6 +7,7 @@
       <base-card
         v-for="book in booksResult"
         :key="book.id"
+        :id="book.id"
         :title="book.volumeInfo.title"
         :poster="book.volumeInfo.imageLinks?.smallThumbnail || ''"
         :authors="book.volumeInfo.authors || []"
