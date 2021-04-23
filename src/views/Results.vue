@@ -1,4 +1,8 @@
 <template>
+  <app-search-box
+    class="min-w-screen flex items-center justify-center px-5 py-5"
+    @search="searchBooks"
+  />
   <div class="mx-20 my-6">
     <div
       v-if="!loadingData"
@@ -29,12 +33,13 @@ import { defineComponent, reactive, toRefs, computed, watch } from 'vue'
 import AppResultPagination from '@/components/AppResultPagination.vue'
 import BaseCard from '@/components/BaseCard.vue'
 import BaseWaitLoader from '@/components/BaseWaitLoader.vue'
+import AppSearchBox from '@/components/AppSearchBox.vue'
 import { IBook } from '@/interfaces'
 import { useStore } from 'vuex'
-import { EChangePage, EModules } from '@/enums'
+import { EChangePage, EModules, EPages } from '@/enums'
 import { ActionTypes } from '@/enums/action-types'
 import { MutationTypes } from '@/enums/mutation-types'
-import { getModule } from '@/utils'
+import { getModule, searchBooks } from '@/utils'
 import { GettersTypes } from '@/enums/getter-types'
 
 interface IResultsState {
@@ -44,11 +49,12 @@ interface IResultsState {
 }
 
 export default defineComponent({
-  name: 'Results',
+  name: EPages.RESULTS,
   components: {
     AppResultPagination,
     BaseCard,
     BaseWaitLoader,
+    AppSearchBox,
   },
 
   setup() {
@@ -103,7 +109,7 @@ export default defineComponent({
         })
     }
 
-    return { ...toRefs(state), goToPreviousPage, goToNextPage }
+    return { ...toRefs(state), goToPreviousPage, goToNextPage, searchBooks }
   },
 })
 </script>

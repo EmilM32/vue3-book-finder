@@ -43,12 +43,13 @@
         </div>
       </div>
     </div>
-    <button
-      class="absolute bottom-2 right-2 bg-transparent hover:bg-blue-400 font-semibold py-2 px-4 border hover:border-transparent rounded"
-      @click="goToBooksDetails"
-    >
-      Button
-    </button>
+    <router-link :to="{ name: 'Details', params: { id: id } }">
+      <button
+        class="absolute bottom-2 right-2 bg-transparent hover:bg-blue-400 font-semibold py-2 px-4 border hover:border-transparent rounded"
+      >
+        {{ $t('info.more') }}
+      </button>
+    </router-link>
   </div>
 </template>
 
@@ -91,11 +92,7 @@ export default defineComponent({
       }
     }
 
-    function goToBooksDetails(): void {
-      console.log('goToBooksDetails', props.id)
-    }
-
-    return { ...toRefs(props), cutTitle, goToBooksDetails }
+    return { ...toRefs(props), cutTitle }
   },
 })
 </script>

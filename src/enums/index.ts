@@ -1,8 +1,15 @@
 export enum EChangePage {
   NEXT,
-  PREVIOUS
+  PREVIOUS,
 }
 
 export enum EModules {
-  BOOKS = 'books'
+  BOOKS = 'books',
+}
+
+export enum EPages {
+  HOME = 'Home',
+  RESULTS = 'Results',
+  DETAILS = 'Details',
+  NOT_FOUND = 'NotFound',
 }
