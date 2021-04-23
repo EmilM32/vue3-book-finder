@@ -1,7 +1,9 @@
 {
   "common": {
     "search": "Search",
-    "wait": "Please wait"
+    "wait": "Please wait",
+    "notFound": "Not found",
+    "homePage": "Home Page"
   },
   "info": {
     "authors": "Author | Authors",
