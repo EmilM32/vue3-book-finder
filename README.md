@@ -1,5 +1,5 @@
-# book-finder
-
+# Book Finder
+Search for books by entering a query (Title, Author, etc).
 ## Project setup
 ```
 npm install
