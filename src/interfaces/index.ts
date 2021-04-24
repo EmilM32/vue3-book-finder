@@ -27,32 +27,34 @@ export interface IVolumeInfo {
     smallThumbnail: string
     thumbnail: string
   },
-  language: string
+  language?: string
   previewLink: string
   infoLink: string
   canonicalVolumeLink: string
+  pageCount?: number
+  averageRating?: number
 }
 
 export interface ISaleInfo {
   country: string
   saleability: string
-  isEbook: boolean
-  listPrice: {
+  isEbook?: boolean
+  listPrice?: {
     amount: number
     currencyCode: string
   },
-  retailPrice: {
+  retailPrice?: {
     amount: number
     currencyCode: string
   },
-  buyLink: string
-  offers: {
+  buyLink?: string
+  offers?: {
     finskyOfferType: number
     listPrice: {
       amountInMicros: number
       currencyCode: string
     },
-    retailPrice: {
+    retailPrice?: {
       amountInMicros: number
       currencyCode: string
     }

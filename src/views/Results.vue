@@ -29,7 +29,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, computed, watch } from 'vue'
+import {
+  defineComponent,
+  reactive,
+  toRefs,
+  computed,
+  watch,
+  onMounted,
+} from 'vue'
 import AppResultPagination from '@/components/AppResultPagination.vue'
 import BaseCard from '@/components/BaseCard.vue'
 import BaseWaitLoader from '@/components/BaseWaitLoader.vue'
@@ -72,6 +79,12 @@ export default defineComponent({
           ]
       ),
       loadingData: true,
+    })
+
+    onMounted(() => {
+      if (state.booksResult.length) {
+        state.loadingData = false
+      }
     })
 
     watch(

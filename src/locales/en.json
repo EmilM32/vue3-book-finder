@@ -9,6 +9,11 @@
     "authors": "Author | Authors",
     "publishedDate": "Published date",
     "publisher": "Publisher",
-    "more": "More"
+    "more": "More",
+    "lang": "Language",
+    "buyLink": "Buy link",
+    "pageCount": "Page count",
+    "description": "Description",
+    "categories": "Categories"
   }
 }
