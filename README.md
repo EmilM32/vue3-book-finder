@@ -1,27 +1,19 @@
 # Book Finder
 Search for books by entering a query (Title, Author, etc).
-## Project setup
-```
-npm install
-```
+
+Build using:
+* [Google books API](https://developers.google.com/books/docs/v1/using#query-params)
+* Vue 3 (Typescript)
+* Tailwind CSS
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+docker-compose -f docker-compose.dev.yaml build
+docker-compose -f docker-compose.dev.yaml up
 ```
 
-### Compiles and minifies for production
+### Compiles and serve for production
 ```
-npm run build
+docker-compose -f docker-compose.prod.yaml build
+docker-compose -f docker-compose.prod.yaml up
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-https://github.com/florinpop17/app-ideas/blob/master/Projects/2-Intermediate/Book-Finder-App.md
-https://developers.google.com/books/docs/v1/using#query-params
